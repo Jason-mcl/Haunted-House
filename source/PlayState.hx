@@ -6,6 +6,7 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.group.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 import flixel.ui.FlxButton;
@@ -19,6 +20,8 @@ class PlayState extends FlxState
 	private var _player:Player;
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
+	private var _grpEnemies:FlxTypedGroup<Ghost>;
+	
 	/**
 	 * Function that is called up when to state is created to set it up. 
 	 */
@@ -29,9 +32,12 @@ class PlayState extends FlxState
 		tileProperties();
 		add(_mWalls);
 		
+		_grpEnemies = new FlxTypedGroup<Ghost>();
+		
 		_player = new Player();
 		_map.loadEntities(placeEntities, "entities");
 		add(_player);
+		add(_grpEnemies);
 		
 		FlxG.camera.follow(_player, FlxCamera.STYLE_TOPDOWN, 1);
 		
@@ -54,6 +60,8 @@ class PlayState extends FlxState
 	{
 		super.update();
 		FlxG.collide(_player, _mWalls);
+		FlxG.collide(_grpEnemies, _mWalls);
+		checkEnemyVision();
 	}
 	
 	private function placeEntities(entityName:String, entityData:Xml):Void 
@@ -65,6 +73,10 @@ class PlayState extends FlxState
 			_player.x = x;
 			_player.y = y;
 		}
+		else if (entityName == "enemy")
+		{
+			_grpEnemies.add(new Ghost(x, y, Std.parseInt(entityData.get("etype"))));
+		}
 	}
 	
 	private function tileProperties():Void
@@ -75,5 +87,19 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(4, FlxObject.NONE);
 		_mWalls.setTileProperties(5, FlxObject.ANY);
 		_mWalls.setTileProperties(6, FlxObject.ANY);
+	}
+	
+	private function checkEnemyVision():Void
+	{
+		for (ghost in _grpEnemies.members)
+		{
+			if (_mWalls.ray(ghost.getMidpoint(), _player.getMidpoint()))
+			{
+				ghost.seesPlayer = true;
+				ghost.playerPos.copyFrom(_player.getMidpoint());
+			}
+			else
+				ghost.seesPlayer = false;
+		}
 	}
 }
