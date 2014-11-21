@@ -31,8 +31,20 @@ class ApplicationMain {
 		types.push (AssetType.TEXT);
 		
 		
+		urls.push ("assets/data/level1.oel");
+		types.push (AssetType.TEXT);
+		
+		
+		urls.push ("assets/data/tilemapProject.oep");
+		types.push (AssetType.TEXT);
+		
+		
 		urls.push ("assets/images/images-go-here.txt");
 		types.push (AssetType.TEXT);
+		
+		
+		urls.push ("assets/images/tilemap.png");
+		types.push (AssetType.IMAGE);
 		
 		
 		urls.push ("assets/music/music-goes-here.txt");
