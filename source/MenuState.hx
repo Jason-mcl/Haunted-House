@@ -17,6 +17,8 @@ class MenuState extends FlxState
 	 */
 	override public function create():Void
 	{
+		var startButton = new FlxButton(0, 0, "Start Game", startGame);
+		add(startButton);
 		super.create();
 	}
 	
@@ -36,4 +38,9 @@ class MenuState extends FlxState
 	{
 		super.update();
 	}	
+	
+	private function startGame():Void
+	{
+		FlxG.switchState(new PlayState());
+	}
 }
