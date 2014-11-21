@@ -25,9 +25,8 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		_map = new FlxOgmoLoader(AssetPaths.level1__oel);
-		_mWalls = _map.loadTilemap(AssetPaths.tilemap__png, 64, 64, "walls");
-		_mWalls.setTileProperties(1, FlxObject.NONE);
-		_mWalls.setTileProperties(2, FlxObject.ANY);
+		_mWalls = _map.loadTilemap(AssetPaths.tilemap2__png, 32, 32, "walls");
+		tileProperties();
 		add(_mWalls);
 		
 		_player = new Player();
@@ -66,5 +65,15 @@ class PlayState extends FlxState
 			_player.x = x;
 			_player.y = y;
 		}
+	}
+	
+	private function tileProperties():Void
+	{
+		_mWalls.setTileProperties(1, FlxObject.NONE);
+		_mWalls.setTileProperties(2, FlxObject.NONE);
+		_mWalls.setTileProperties(3, FlxObject.NONE);
+		_mWalls.setTileProperties(4, FlxObject.NONE);
+		_mWalls.setTileProperties(5, FlxObject.ANY);
+		_mWalls.setTileProperties(6, FlxObject.ANY);
 	}
 }

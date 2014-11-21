@@ -47,6 +47,10 @@ class ApplicationMain {
 		types.push (AssetType.IMAGE);
 		
 		
+		urls.push ("assets/images/tilemap2.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("assets/music/music-goes-here.txt");
 		types.push (AssetType.TEXT);
 		

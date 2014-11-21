@@ -31,8 +31,8 @@
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>walls</Name>
       <Grid>
-        <Width>64</Width>
-        <Height>64</Height>
+        <Width>32</Width>
+        <Height>32</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -43,8 +43,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>entities</Name>
       <Grid>
-        <Width>64</Width>
-        <Height>64</Height>
+        <Width>32</Width>
+        <Height>32</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -55,10 +55,10 @@
   <Tilesets>
     <Tileset>
       <Name>tiles</Name>
-      <FilePath>..\images\tilemap.png</FilePath>
+      <FilePath>..\images\tilemap2.png</FilePath>
       <TileSize>
-        <Width>64</Width>
-        <Height>64</Height>
+        <Width>32</Width>
+        <Height>32</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
@@ -66,8 +66,8 @@
   <EntityDefinitions>
     <EntityDefinition Name="player" Limit="1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>64</Width>
-        <Height>64</Height>
+        <Width>32</Width>
+        <Height>32</Height>
       </Size>
       <Origin>
         <X>0</X>
