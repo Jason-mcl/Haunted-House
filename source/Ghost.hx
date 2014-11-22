@@ -1,6 +1,7 @@
 package ;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.util.FlxAngle;
 import flixel.util.FlxColor;
@@ -28,9 +29,12 @@ class Ghost extends FlxSprite
 		super(X, Y);
 		makeGraphic(32, 32, FlxColor.RED);
 		etype = EType;
+		loadGraphic(AssetPaths.ghost__png, false, 32, 32);
+		setFacingFlip(FlxObject.LEFT, false, false);
+        setFacingFlip(FlxObject.RIGHT, true, false);
 		drag.x = drag.y = 10;
-		setSize(22, 22);
-		offset.set(5, 5);
+		setSize(27, 30);
+		offset.set(5, 2);
 		_brain = new FSM(idle);
 		_idleTmr = 0;
 		playerPos = FlxPoint.get();
@@ -80,4 +84,26 @@ class Ghost extends FlxSprite
 			FlxVelocity.moveTowardsPoint(this, playerPos, Std.int(speed));
 		}
 	}
+	
+	override public function draw():Void 
+    {
+        if ((velocity.x != 0 || velocity.y != 0 ) && touching == FlxObject.NONE)
+        {
+            if (Math.abs(velocity.x) > Math.abs(velocity.y))
+            {
+                if (velocity.x < 0)
+                    facing = FlxObject.LEFT;
+                else
+                    facing = FlxObject.RIGHT;
+            }
+            else
+            {
+                if (velocity.y < 0)
+                    facing = FlxObject.UP;
+                else
+                    facing = FlxObject.DOWN;
+            }
+        }
+        super.draw();
+    }
 }

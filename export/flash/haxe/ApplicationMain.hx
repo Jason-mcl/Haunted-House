@@ -39,6 +39,22 @@ class ApplicationMain {
 		types.push (AssetType.TEXT);
 		
 		
+		urls.push ("assets/images/door01.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/door02.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/doors.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/ghost.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/images-go-here.txt");
 		types.push (AssetType.TEXT);
 		

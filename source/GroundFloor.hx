@@ -8,6 +8,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxTypedGroup;
 import flixel.text.FlxText;
+import flixel.tile.FlxTile;
 import flixel.tile.FlxTilemap;
 import flixel.ui.FlxBar;
 import flixel.ui.FlxButton;
@@ -20,7 +21,7 @@ using flixel.util.FlxSpriteUtil;
 /**
  * A FlxState which can be used for the actual gameplay.
  */
-class PlayState extends FlxState
+class GroundFloor extends FlxState
 {
 	private var _player:Player;
 	private var _map:FlxOgmoLoader;
@@ -96,6 +97,8 @@ class PlayState extends FlxState
 		checkEnemyVision();
 		//addSoundCircle();
 		updateHUD();
+		
+		
 	}
 	
 	private function placeEntities(entityName:String, entityData:Xml):Void 
@@ -121,6 +124,10 @@ class PlayState extends FlxState
 		_mWalls.setTileProperties(4, FlxObject.NONE);
 		_mWalls.setTileProperties(5, FlxObject.ANY);
 		_mWalls.setTileProperties(6, FlxObject.ANY);
+		_mWalls.setTileProperties(10, FlxObject.ANY, goUpstairs);
+		_mWalls.setTileProperties(11, FlxObject.ANY);
+		_mWalls.setTileProperties(15, FlxObject.ANY, goUpstairs);
+		_mWalls.setTileProperties(16, FlxObject.ANY);
 	}
 	
 	private function checkEnemyVision():Void
@@ -207,6 +214,11 @@ class PlayState extends FlxState
 	}
 	
 	private function gameOver(Timer:FlxTimer):Void
+	{
+		
+	}
+	
+	private function goUpstairs(Tile:FlxObject, Object:FlxObject):Void
 	{
 		
 	}
