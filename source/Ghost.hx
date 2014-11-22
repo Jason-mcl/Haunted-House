@@ -21,6 +21,7 @@ class Ghost extends FlxSprite
 	private var _moveDir:Float;
 	public var seesPlayer:Bool = false;
 	public var playerPos(default, null):FlxPoint;
+	public var sightRadius = 125;
 	
 	public function new(X:Float=0, Y:Float=0, EType:Int) 
 	{
