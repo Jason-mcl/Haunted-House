@@ -51,18 +51,6 @@
         <Y>1</Y>
       </ScrollFactor>
     </LayerDefinition>
-    <LayerDefinition xsi:type="TileLayerDefinition">
-      <Name>doors</Name>
-      <Grid>
-        <Width>32</Width>
-        <Height>32</Height>
-      </Grid>
-      <ScrollFactor>
-        <X>1</X>
-        <Y>1</Y>
-      </ScrollFactor>
-      <ExportMode>CSV</ExportMode>
-    </LayerDefinition>
   </LayerDefinitions>
   <Tilesets>
     <Tileset>
@@ -74,18 +62,9 @@
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
-    <Tileset>
-      <Name>doors</Name>
-      <FilePath>..\images\doors.png</FilePath>
-      <TileSize>
-        <Width>32</Width>
-        <Height>32</Height>
-      </TileSize>
-      <TileSep>0</TileSep>
-    </Tileset>
   </Tilesets>
   <EntityDefinitions>
-    <EntityDefinition Name="player" Limit="1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+    <EntityDefinition Name="player" Limit="2" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>32</Width>
         <Height>32</Height>
@@ -97,7 +76,9 @@
       <ImageDefinition DrawMode="Rectangle" ImagePath="" Tiled="false">
         <RectColor A="255" R="0" G="255" B="255" />
       </ImageDefinition>
-      <ValueDefinitions />
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="IntValueDefinition" Name="spawnPoint" Default="0" Min="0" Max="100" ShowSlider="false" />
+      </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
     <EntityDefinition Name="enemy" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
@@ -115,6 +96,21 @@
       <ValueDefinitions>
         <ValueDefinition xsi:type="IntValueDefinition" Name="etype" Default="0" Min="0" Max="100" ShowSlider="false" />
       </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="money" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>32</Width>
+        <Height>32</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Rectangle" ImagePath="" Tiled="false">
+        <RectColor A="255" R="0" G="64" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>

@@ -27,7 +27,6 @@ class Ghost extends FlxSprite
 	public function new(X:Float=0, Y:Float=0, EType:Int) 
 	{
 		super(X, Y);
-		makeGraphic(32, 32, FlxColor.RED);
 		etype = EType;
 		loadGraphic(AssetPaths.ghost__png, false, 32, 32);
 		setFacingFlip(FlxObject.LEFT, false, false);

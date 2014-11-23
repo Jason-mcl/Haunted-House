@@ -48,6 +48,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/data/data-goes-here.txt", AssetType.TEXT);
 		className.set ("assets/data/level1.oel", __ASSET__assets_data_level1_oel);
 		type.set ("assets/data/level1.oel", AssetType.TEXT);
+		className.set ("assets/data/level2.oel", __ASSET__assets_data_level2_oel);
+		type.set ("assets/data/level2.oel", AssetType.TEXT);
 		className.set ("assets/data/tilemapProject.oep", __ASSET__assets_data_tilemapproject_oep);
 		type.set ("assets/data/tilemapProject.oep", AssetType.TEXT);
 		className.set ("assets/images/door01.png", __ASSET__assets_images_door01_png);
@@ -60,6 +62,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/ghost.png", AssetType.IMAGE);
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
+		className.set ("assets/images/money001.png", __ASSET__assets_images_money001_png);
+		type.set ("assets/images/money001.png", AssetType.IMAGE);
+		className.set ("assets/images/money003.png", __ASSET__assets_images_money003_png);
+		type.set ("assets/images/money003.png", AssetType.IMAGE);
 		className.set ("assets/images/tilemap.png", __ASSET__assets_images_tilemap_png);
 		type.set ("assets/images/tilemap.png", AssetType.IMAGE);
 		className.set ("assets/images/tilemap2.png", __ASSET__assets_images_tilemap2_png);
@@ -82,6 +88,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		type.set (id, AssetType.TEXT);
 		id = "assets/data/level1.oel";
+		path.set (id, id);
+		
+		type.set (id, AssetType.TEXT);
+		id = "assets/data/level2.oel";
 		path.set (id, id);
 		
 		type.set (id, AssetType.TEXT);
@@ -109,6 +119,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.TEXT);
+		id = "assets/images/money001.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/money003.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "assets/images/tilemap.png";
 		path.set (id, id);
 		
@@ -154,6 +172,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
 		#end
 		
 		#if (windows || mac || linux)
@@ -165,6 +186,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/data/level1.oel", __ASSET__assets_data_level1_oel);
 		type.set ("assets/data/level1.oel", AssetType.TEXT);
+		
+		className.set ("assets/data/level2.oel", __ASSET__assets_data_level2_oel);
+		type.set ("assets/data/level2.oel", AssetType.TEXT);
 		
 		className.set ("assets/data/tilemapProject.oep", __ASSET__assets_data_tilemapproject_oep);
 		type.set ("assets/data/tilemapProject.oep", AssetType.TEXT);
@@ -183,6 +207,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
+		
+		className.set ("assets/images/money001.png", __ASSET__assets_images_money001_png);
+		type.set ("assets/images/money001.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/money003.png", __ASSET__assets_images_money003_png);
+		type.set ("assets/images/money003.png", AssetType.IMAGE);
 		
 		className.set ("assets/images/tilemap.png", __ASSET__assets_images_tilemap_png);
 		type.set ("assets/images/tilemap.png", AssetType.IMAGE);
@@ -775,12 +805,15 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 @:keep @:bind #if display private #end class __ASSET__assets_data_data_goes_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_data_level1_oel extends flash.utils.ByteArray { }
+@:keep @:bind #if display private #end class __ASSET__assets_data_level2_oel extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_data_tilemapproject_oep extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_images_door01_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_door02_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_doors_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_ghost_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_images_go_here_txt extends flash.utils.ByteArray { }
+@:keep @:bind #if display private #end class __ASSET__assets_images_money001_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_money003_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_tilemap_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_tilemap2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
@@ -792,6 +825,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 #elseif html5
 
 #if openfl
+
+
+
 
 
 
@@ -820,12 +856,15 @@ class DefaultAssetLibrary extends AssetLibrary {
 //
 //@:file("assets/data/data-goes-here.txt") class __ASSET__assets_data_data_goes_here_txt extends lime.utils.ByteArray {}
 //@:file("assets/data/level1.oel") class __ASSET__assets_data_level1_oel extends lime.utils.ByteArray {}
+//@:file("assets/data/level2.oel") class __ASSET__assets_data_level2_oel extends lime.utils.ByteArray {}
 //@:file("assets/data/tilemapProject.oep") class __ASSET__assets_data_tilemapproject_oep extends lime.utils.ByteArray {}
 //@:bitmap("assets/images/door01.png") class __ASSET__assets_images_door01_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/door02.png") class __ASSET__assets_images_door02_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/doors.png") class __ASSET__assets_images_doors_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/ghost.png") class __ASSET__assets_images_ghost_png extends openfl.display.BitmapData {}
 //@:file("assets/images/images-go-here.txt") class __ASSET__assets_images_images_go_here_txt extends lime.utils.ByteArray {}
+//@:bitmap("assets/images/money001.png") class __ASSET__assets_images_money001_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/images/money003.png") class __ASSET__assets_images_money003_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/tilemap.png") class __ASSET__assets_images_tilemap_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/tilemap2.png") class __ASSET__assets_images_tilemap2_png extends openfl.display.BitmapData {}
 //@:file("assets/music/music-goes-here.txt") class __ASSET__assets_music_music_goes_here_txt extends lime.utils.ByteArray {}

@@ -15,6 +15,7 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxMath;
 import flixel.util.FlxPoint;
+import flixel.util.FlxRandom;
 import flixel.util.FlxTimer;
 using flixel.util.FlxSpriteUtil;
 
@@ -27,12 +28,14 @@ class GroundFloor extends FlxState
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
 	private var _grpEnemies:FlxTypedGroup<Ghost>;
+	private var _grpMoney:FlxTypedGroup<Money>;
 	private var _hud:HUD;
 	private var _gameClock:FlxTimer;
-	private var _clockText:FlxText;
-	private var _insanityBar:FlxBar;
+//	private var _clockText:FlxText;
+//	private var _insanityBar:FlxBar;
 	private var _insanityTmr:Float;
-	private var _insanityTimeTick:Bool = false;
+//	private var _insanityTimeTick:Bool = false;
+	public var gameRunning:Bool = false;
 	
 	var debugSoundRadius = new FlxSprite();
 	var lineStyle:LineStyle = { color:FlxColor.FOREST_GREEN, thickness:1 };
@@ -43,17 +46,23 @@ class GroundFloor extends FlxState
 	 */
 	override public function create():Void
 	{
+		#if !FLX_NO_MOUSE
+		FlxG.mouse.visible = false;
+		#end
+		
 		_map = new FlxOgmoLoader(AssetPaths.level1__oel);
 		_mWalls = _map.loadTilemap(AssetPaths.tilemap2__png, 32, 32, "walls");
 		tileProperties();
 		add(_mWalls);
 		
 		_grpEnemies = new FlxTypedGroup<Ghost>();
-		
 		_player = new Player();
+		_grpMoney = new FlxTypedGroup<Money>();
+		
 		_map.loadEntities(placeEntities, "entities");
 		add(_player);
 		add(_grpEnemies);
+		add(_grpMoney);
 		
 		FlxG.camera.follow(_player, FlxCamera.STYLE_TOPDOWN, 1);
 		
@@ -61,18 +70,23 @@ class GroundFloor extends FlxState
 		
 		add(debugSoundRadius);
 		
-		_gameClock = new FlxTimer(300.0, gameOver);
-		_clockText = new FlxText(FlxG.camera.x, FlxG.camera.y, 0);
+		_gameClock = new FlxTimer(300.0, timerEnd);
+		/*_clockText = new FlxText(FlxG.camera.x, FlxG.camera.y, 0);
 		_clockText.size = 20;
-		add(_clockText);
+		add(_clockText);*/
 
 		
-		_insanityBar = new FlxBar(FlxG.camera.x + (FlxG.camera.width - 155), FlxG.camera.y + 2, FlxBar.FILL_LEFT_TO_RIGHT, 150, 15, null, "", 0, 300 );
-		_insanityBar.createFilledBar(FlxColor.CRIMSON, FlxColor.GREEN, true, FlxColor.BLACK);
+		//_insanityBar = new FlxBar(FlxG.camera.x + (FlxG.camera.width - 155), FlxG.camera.y + 2, FlxBar.FILL_LEFT_TO_RIGHT, 150, 15, null, "", 0, 300 );
+		//_insanityBar.createFilledBar(FlxColor.CRIMSON, FlxColor.GREEN, true, FlxColor.BLACK);
 		_insanityTmr = 0;
-		add(_insanityBar);
+		//add(_insanityBar);
+		
+		_hud = new HUD(_gameClock.timeLeft, _player.insanity);
+		add(_hud);
 		
 		updateHUD();
+		
+		gameRunning = true;
 		
 		super.create();
 	}
@@ -94,11 +108,10 @@ class GroundFloor extends FlxState
 		super.update();
 		FlxG.collide(_player, _mWalls);
 		FlxG.collide(_grpEnemies, _mWalls);
+		FlxG.overlap(_player, _grpMoney, playerTouchMoney);
 		checkEnemyVision();
 		//addSoundCircle();
 		updateHUD();
-		
-		
 	}
 	
 	private function placeEntities(entityName:String, entityData:Xml):Void 
@@ -107,12 +120,24 @@ class GroundFloor extends FlxState
 		var y:Int = Std.parseInt(entityData.get("y"));
 		if (entityName == "player")
 		{
-			_player.x = x;
-			_player.y = y;
+			if (!gameRunning && Std.parseInt(entityData.get("spawnPoint")) == 0)
+			{
+				_player.x = x;
+				_player.y = y;
+			}
+			else if (gameRunning && Std.parseInt(entityData.get("spawnPoint")) == 1)
+			{
+				_player.x = x;
+				_player.y = y;
+			}
 		}
 		else if (entityName == "enemy")
 		{
 			_grpEnemies.add(new Ghost(x, y, Std.parseInt(entityData.get("etype"))));
+		}
+		else if (entityName == "money")
+		{
+			_grpMoney.add(new Money(x, y));
 		}
 	}
 	
@@ -124,10 +149,14 @@ class GroundFloor extends FlxState
 		_mWalls.setTileProperties(4, FlxObject.NONE);
 		_mWalls.setTileProperties(5, FlxObject.ANY);
 		_mWalls.setTileProperties(6, FlxObject.ANY);
-		_mWalls.setTileProperties(10, FlxObject.ANY, goUpstairs);
+		_mWalls.setTileProperties(10, FlxObject.ANY, goUpstairs, Player);
 		_mWalls.setTileProperties(11, FlxObject.ANY);
-		_mWalls.setTileProperties(15, FlxObject.ANY, goUpstairs);
+		_mWalls.setTileProperties(12, FlxObject.ANY);
+		_mWalls.setTileProperties(13, FlxObject.ANY);
+		_mWalls.setTileProperties(15, FlxObject.ANY, goUpstairs, Player);
 		_mWalls.setTileProperties(16, FlxObject.ANY);
+		_mWalls.setTileProperties(17, FlxObject.NONE);
+		_mWalls.setTileProperties(18, FlxObject.NONE);
 	}
 	
 	private function checkEnemyVision():Void
@@ -150,19 +179,23 @@ class GroundFloor extends FlxState
 			{
 				if (distance <= _player.NO_SOUND)
 				{
-					_player.insanity -= 5;
+					_hud.updateHUD(_gameClock.timeLeft, 5);
+					//_player.insanity -= 5;
 				}
 				else if (distance <= _player.SNEAK_SOUND)
 				{
-					_player.insanity -= 4;
+					_hud.updateHUD(_gameClock.timeLeft, 5);
+					//_player.insanity -= 4;
 				}
 				else if (distance <= _player.REG_SOUND)
 				{
-					_player.insanity -= 3;
+					_hud.updateHUD(_gameClock.timeLeft, 5);
+					//_player.insanity -= 3;
 				}
 				else if (distance <= _player.SPRINT_SOUND)
 				{
-					_player.insanity -= 2;
+					_hud.updateHUD(_gameClock.timeLeft, 5);
+					//_player.insanity -= 2;
 				}
 				_insanityTmr = 0.5;
 			}
@@ -170,6 +203,14 @@ class GroundFloor extends FlxState
 			{
 				_insanityTmr -= FlxG.elapsed;
 			}
+		}
+	}
+	
+	private function playerTouchMoney(player:Player, dollar:Money):Void
+	{
+		if (player.alive && player.exists && dollar.alive && dollar.exists)
+		{
+			dollar.kill();
 		}
 	}
 	
@@ -182,6 +223,7 @@ class GroundFloor extends FlxState
 	
 	private function updateHUD():Void
 	{
+		/*
 		var minutes:Int;
 		var seconds:Int;
 		
@@ -211,15 +253,32 @@ class GroundFloor extends FlxState
 		
 		_insanityBar.scrollFactor.set(0, 0);
 		_insanityBar.currentValue = _player.insanity;
+		*/
+		
+		_hud.updateHUD(_gameClock.timeLeft);
+		_player.insanity = _hud.getCurrentInsanity();
 	}
 	
-	private function gameOver(Timer:FlxTimer):Void
+	private function timerEnd(Timer:FlxTimer):Void
 	{
-		
+		endGame();
 	}
 	
 	private function goUpstairs(Tile:FlxObject, Object:FlxObject):Void
 	{
+		/*
+		SecondFloor.hud = _hud;
+		FlxG.camera.fade(FlxColor.BLACK,.33, false,function() {
+			FlxG.switchState(new SecondFloor());
+		});
+		*/
+		
+		_player.color = FlxRandom.color();
+	}
+
+	public function endGame():Void
+	{
 		
 	}
+	
 }

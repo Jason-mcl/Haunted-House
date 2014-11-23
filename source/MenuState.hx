@@ -18,6 +18,8 @@ class MenuState extends FlxState
 	override public function create():Void
 	{
 		var startButton = new FlxButton(0, 0, "Start Game", startGame);
+		startButton.x = (FlxG.width / 2) - startButton.width;
+		startButton.y = (FlxG.height / 2) - startButton.height;
 		add(startButton);
 		super.create();
 	}
