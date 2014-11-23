@@ -62,10 +62,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/ghost.png", AssetType.IMAGE);
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
+		className.set ("assets/images/merchant.png", __ASSET__assets_images_merchant_png);
+		type.set ("assets/images/merchant.png", AssetType.IMAGE);
 		className.set ("assets/images/money001.png", __ASSET__assets_images_money001_png);
 		type.set ("assets/images/money001.png", AssetType.IMAGE);
 		className.set ("assets/images/money003.png", __ASSET__assets_images_money003_png);
 		type.set ("assets/images/money003.png", AssetType.IMAGE);
+		className.set ("assets/images/playerSprite.png", __ASSET__assets_images_playersprite_png);
+		type.set ("assets/images/playerSprite.png", AssetType.IMAGE);
 		className.set ("assets/images/tilemap.png", __ASSET__assets_images_tilemap_png);
 		type.set ("assets/images/tilemap.png", AssetType.IMAGE);
 		className.set ("assets/images/tilemap2.png", __ASSET__assets_images_tilemap2_png);
@@ -119,11 +123,19 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.TEXT);
+		id = "assets/images/merchant.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "assets/images/money001.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/money003.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/playerSprite.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -156,6 +168,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#else
 		
 		#if openfl
+		
+		
 		
 		
 		
@@ -208,11 +222,17 @@ class DefaultAssetLibrary extends AssetLibrary {
 		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
 		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
 		
+		className.set ("assets/images/merchant.png", __ASSET__assets_images_merchant_png);
+		type.set ("assets/images/merchant.png", AssetType.IMAGE);
+		
 		className.set ("assets/images/money001.png", __ASSET__assets_images_money001_png);
 		type.set ("assets/images/money001.png", AssetType.IMAGE);
 		
 		className.set ("assets/images/money003.png", __ASSET__assets_images_money003_png);
 		type.set ("assets/images/money003.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/playerSprite.png", __ASSET__assets_images_playersprite_png);
+		type.set ("assets/images/playerSprite.png", AssetType.IMAGE);
 		
 		className.set ("assets/images/tilemap.png", __ASSET__assets_images_tilemap_png);
 		type.set ("assets/images/tilemap.png", AssetType.IMAGE);
@@ -812,8 +832,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__assets_images_doors_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_ghost_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_images_go_here_txt extends flash.utils.ByteArray { }
+@:keep @:bind #if display private #end class __ASSET__assets_images_merchant_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_money001_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_money003_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_playersprite_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_tilemap_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_tilemap2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
@@ -825,6 +847,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 #elseif html5
 
 #if openfl
+
+
 
 
 
@@ -863,8 +887,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 //@:bitmap("assets/images/doors.png") class __ASSET__assets_images_doors_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/ghost.png") class __ASSET__assets_images_ghost_png extends openfl.display.BitmapData {}
 //@:file("assets/images/images-go-here.txt") class __ASSET__assets_images_images_go_here_txt extends lime.utils.ByteArray {}
+//@:bitmap("assets/images/merchant.png") class __ASSET__assets_images_merchant_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/money001.png") class __ASSET__assets_images_money001_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/money003.png") class __ASSET__assets_images_money003_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/images/playerSprite.png") class __ASSET__assets_images_playersprite_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/tilemap.png") class __ASSET__assets_images_tilemap_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/tilemap2.png") class __ASSET__assets_images_tilemap2_png extends openfl.display.BitmapData {}
 //@:file("assets/music/music-goes-here.txt") class __ASSET__assets_music_music_goes_here_txt extends lime.utils.ByteArray {}

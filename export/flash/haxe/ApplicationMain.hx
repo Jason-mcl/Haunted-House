@@ -63,11 +63,19 @@ class ApplicationMain {
 		types.push (AssetType.TEXT);
 		
 		
+		urls.push ("assets/images/merchant.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/money001.png");
 		types.push (AssetType.IMAGE);
 		
 		
 		urls.push ("assets/images/money003.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/playerSprite.png");
 		types.push (AssetType.IMAGE);
 		
 		

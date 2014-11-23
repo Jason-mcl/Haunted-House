@@ -36,6 +36,7 @@ class GroundFloor extends FlxState
 	private var _insanityTmr:Float;
 //	private var _insanityTimeTick:Bool = false;
 	public var gameRunning:Bool = false;
+	private var _merchant:Merchant;
 	
 	var debugSoundRadius = new FlxSprite();
 	var lineStyle:LineStyle = { color:FlxColor.FOREST_GREEN, thickness:1 };
@@ -58,11 +59,13 @@ class GroundFloor extends FlxState
 		_grpEnemies = new FlxTypedGroup<Ghost>();
 		_player = new Player();
 		_grpMoney = new FlxTypedGroup<Money>();
+		_merchant = new Merchant();
 		
 		_map.loadEntities(placeEntities, "entities");
 		add(_player);
 		add(_grpEnemies);
 		add(_grpMoney);
+		add(_merchant);
 		
 		FlxG.camera.follow(_player, FlxCamera.STYLE_TOPDOWN, 1);
 		
@@ -139,6 +142,11 @@ class GroundFloor extends FlxState
 		{
 			_grpMoney.add(new Money(x, y));
 		}
+		else if (entityName == "merchant")
+		{
+			_merchant.x = x;
+			_merchant.y = y;
+		}
 	}
 	
 	private function tileProperties():Void
@@ -157,6 +165,7 @@ class GroundFloor extends FlxState
 		_mWalls.setTileProperties(16, FlxObject.ANY);
 		_mWalls.setTileProperties(17, FlxObject.NONE);
 		_mWalls.setTileProperties(18, FlxObject.NONE);
+		_mWalls.setTileProperties(38, FlxObject.ANY, enterShop, Player);
 	}
 	
 	private function checkEnemyVision():Void
@@ -274,6 +283,15 @@ class GroundFloor extends FlxState
 		*/
 		
 		_player.color = FlxRandom.color();
+	}
+	
+	private function enterShop(Tile:FlxObject, Object:FlxObject):Void
+	{
+		if (FlxG.keys.pressed.E)
+		{
+			_player.color = FlxRandom.color();
+		}
+		
 	}
 
 	public function endGame():Void
