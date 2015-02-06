@@ -41,12 +41,17 @@ class Player extends FlxSprite
 	{
 		super(X, Y);
 		loadGraphic(AssetPaths.playerSprite__png, true, 32, 32);
+		//loadGraphic(AssetPaths.sprite__png, true, 33, 46);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		
 		animation.add("lr", [3, 4, 3, 5], 6, false);
 		animation.add("u", [6, 7, 6, 8], 6, false);
 		animation.add("d", [0, 1, 0, 2], 6, false);
+		
+		//animation.add("lr", [4,5,6,7]);
+		//animation.add("u", [12,13,14,15]);
+		//animation.add("d", [0,1,2,3]);
 		
 		drag.x = drag.y = 1600;
 		setSize(22, 22);

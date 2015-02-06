@@ -70,6 +70,8 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/money003.png", AssetType.IMAGE);
 		className.set ("assets/images/playerSprite.png", __ASSET__assets_images_playersprite_png);
 		type.set ("assets/images/playerSprite.png", AssetType.IMAGE);
+		className.set ("assets/images/sprite.png", __ASSET__assets_images_sprite_png);
+		type.set ("assets/images/sprite.png", AssetType.IMAGE);
 		className.set ("assets/images/tilemap.png", __ASSET__assets_images_tilemap_png);
 		type.set ("assets/images/tilemap.png", AssetType.IMAGE);
 		className.set ("assets/images/tilemap2.png", __ASSET__assets_images_tilemap2_png);
@@ -139,6 +141,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
+		id = "assets/images/sprite.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "assets/images/tilemap.png";
 		path.set (id, id);
 		
@@ -168,6 +174,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#else
 		
 		#if openfl
+		
 		
 		
 		
@@ -233,6 +240,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/images/playerSprite.png", __ASSET__assets_images_playersprite_png);
 		type.set ("assets/images/playerSprite.png", AssetType.IMAGE);
+		
+		className.set ("assets/images/sprite.png", __ASSET__assets_images_sprite_png);
+		type.set ("assets/images/sprite.png", AssetType.IMAGE);
 		
 		className.set ("assets/images/tilemap.png", __ASSET__assets_images_tilemap_png);
 		type.set ("assets/images/tilemap.png", AssetType.IMAGE);
@@ -836,6 +846,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__assets_images_money001_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_money003_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_playersprite_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_sprite_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_tilemap_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_images_tilemap2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
@@ -847,6 +858,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 #elseif html5
 
 #if openfl
+
 
 
 
@@ -891,6 +903,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 //@:bitmap("assets/images/money001.png") class __ASSET__assets_images_money001_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/money003.png") class __ASSET__assets_images_money003_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/playerSprite.png") class __ASSET__assets_images_playersprite_png extends openfl.display.BitmapData {}
+//@:bitmap("assets/images/sprite.png") class __ASSET__assets_images_sprite_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/tilemap.png") class __ASSET__assets_images_tilemap_png extends openfl.display.BitmapData {}
 //@:bitmap("assets/images/tilemap2.png") class __ASSET__assets_images_tilemap2_png extends openfl.display.BitmapData {}
 //@:file("assets/music/music-goes-here.txt") class __ASSET__assets_music_music_goes_here_txt extends lime.utils.ByteArray {}

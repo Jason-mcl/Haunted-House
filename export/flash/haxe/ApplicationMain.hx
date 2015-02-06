@@ -79,6 +79,10 @@ class ApplicationMain {
 		types.push (AssetType.IMAGE);
 		
 		
+		urls.push ("assets/images/sprite.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/tilemap.png");
 		types.push (AssetType.IMAGE);
 		
