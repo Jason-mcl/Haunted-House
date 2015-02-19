@@ -21,6 +21,7 @@ class Player extends FlxSprite
 	public var NO_SOUND:Int = 50;
 	public var MAX_INSANITY:Int = 300;
 	
+	//TODO: Player speeds may need to be tweaked a bit
 	static var REG_SPEED = 200;
 	static var SNEAK_SPEED = 150;
 	static var SPRINT_SPEED = 300;
@@ -41,7 +42,7 @@ class Player extends FlxSprite
 	{
 		super(X, Y);
 		loadGraphic(AssetPaths.playerSprite__png, true, 32, 32);
-		//loadGraphic(AssetPaths.sprite__png, true, 33, 46);
+		//loadGraphic(AssetPaths.sprite__png, true, 32, 48);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		

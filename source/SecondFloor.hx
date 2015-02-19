@@ -114,3 +114,4 @@ class SecondFloor extends FlxState
 		});
 	}
 }
+

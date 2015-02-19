@@ -43,6 +43,14 @@ class ApplicationMain {
 		types.push (AssetType.TEXT);
 		
 		
+		urls.push ("Gentium Basic");
+		types.push (AssetType.FONT);
+		
+		
+		urls.push ("assets/images/dialogFrame.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/door01.png");
 		types.push (AssetType.IMAGE);
 		
@@ -83,6 +91,14 @@ class ApplicationMain {
 		types.push (AssetType.IMAGE);
 		
 		
+		urls.push ("assets/images/stairsMessage.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/temp_houseTilemap.png");
+		types.push (AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/tilemap.png");
 		types.push (AssetType.IMAGE);
 		
@@ -107,6 +123,122 @@ class ApplicationMain {
 		types.push (AssetType.MUSIC);
 		
 		
+		urls.push ("flixel/flixel-ui/img/box.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/button.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/button_arrow_down.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/button_arrow_left.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/button_arrow_right.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/button_arrow_up.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/button_thin.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/button_toggle.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/check_box.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/check_mark.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/chrome.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/chrome_flat.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/chrome_inset.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/chrome_light.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/dropdown_mark.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/finger_big.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/finger_small.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/hilight.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/invis.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/minus_mark.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/plus_mark.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/radio.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/radio_dot.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/swatch.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/tab.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/img/tab_back.png");
+		types.push (AssetType.IMAGE);
+		
+		
+		urls.push ("flixel/flixel-ui/xml/defaults.xml");
+		types.push (AssetType.TEXT);
+		
+		
+		urls.push ("flixel/flixel-ui/xml/default_loading_screen.xml");
+		types.push (AssetType.TEXT);
+		
+		
+		urls.push ("flixel/flixel-ui/xml/default_popup.xml");
+		types.push (AssetType.TEXT);
+		
+		
 		
 		preloader.load (urls, types);
 		#end
@@ -124,7 +256,7 @@ class ApplicationMain {
 		
 		var loaded = 0;
 		var total = 0;
-		var library_onLoad = function (_) {
+		var library_onLoad = function (__) {
 			
 			loaded++;
 			
@@ -135,6 +267,8 @@ class ApplicationMain {
 			}
 			
 		}
+		
+		preloader = null;
 		
 		
 		
@@ -168,7 +302,7 @@ class ApplicationMain {
 		}
 		
 		#if js
-		#if munit
+		#if (munit || utest)
 		flash.Lib.embed (null, 640, 480, "000000");
 		#end
 		#else
@@ -204,11 +338,11 @@ class ApplicationMain {
 			
 			var instance:DocumentClass = Type.createInstance (DocumentClass, []);
 			
-			if (Std.is (instance, openfl.display.DisplayObject)) {
+			/*if (Std.is (instance, openfl.display.DisplayObject)) {
 				
 				openfl.Lib.current.addChild (cast instance);
 				
-			}
+			}*/
 			
 		}
 		
@@ -232,8 +366,7 @@ class ApplicationMain {
 }
 
 
-#if flash @:build(DocumentClass.buildFlash())
-#else @:build(DocumentClass.build()) #end
+@:build(DocumentClass.build())
 @:keep class DocumentClass extends Main {}
 
 
@@ -260,7 +393,7 @@ class DocumentClass {
 				
 				var method = macro {
 					
-					this.stage = flash.Lib.current.stage;
+					openfl.Lib.current.addChild (this);
 					super ();
 					dispatchEvent (new openfl.events.Event (openfl.events.Event.ADDED_TO_STAGE, false, false));
 					
@@ -268,34 +401,6 @@ class DocumentClass {
 				
 				fields.push ({ name: "new", access: [ APublic ], kind: FFun({ args: [], expr: method, params: [], ret: macro :Void }), pos: Context.currentPos () });
 				
-				return fields;
-				
-			}
-			
-			searchTypes = searchTypes.superClass.t.get ();
-			
-		}
-		
-		return null;
-		
-	}
-	
-	
-	macro public static function buildFlash ():Array<Field> {
-		
-		var classType = Context.getLocalClass ().get ();
-		var searchTypes = classType;
-		
-		while (searchTypes.superClass != null) {
-			
-			if (searchTypes.pack.length == 2 && searchTypes.pack[1] == "display" && searchTypes.name == "DisplayObject") {
-				
-				var fields = Context.getBuildFields ();
-				var method = macro {
-					return flash.Lib.current.stage;
-				}
-				
-				fields.push ({ name: "get_stage", access: [ APrivate ], meta: [ { name: ":getter", params: [ macro stage ], pos: Context.currentPos() } ], kind: FFun({ args: [], expr: method, params: [], ret: macro :flash.display.Stage }), pos: Context.currentPos() });
 				return fields;
 				
 			}

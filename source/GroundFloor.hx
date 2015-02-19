@@ -30,7 +30,10 @@ class GroundFloor extends FlxState
 	private var _grpEnemies:FlxTypedGroup<Ghost>;
 	private var _grpMoney:FlxTypedGroup<Money>;
 	private var _hud:HUD;
-	private var _gameClock:FlxTimer;
+	
+//	private var _gameClock:FlxTimer;
+	private var _gameClock:GameClock;
+	
 //	private var _clockText:FlxText;
 //	private var _insanityBar:FlxBar;
 	private var _insanityTmr:Float;
@@ -73,7 +76,7 @@ class GroundFloor extends FlxState
 		
 		add(debugSoundRadius);
 		
-		_gameClock = new FlxTimer(300.0, timerEnd);
+		_gameClock = new GameClock(300.0, timerEnd);
 		/*_clockText = new FlxText(FlxG.camera.x, FlxG.camera.y, 0);
 		_clockText.size = 20;
 		add(_clockText);*/
@@ -90,6 +93,9 @@ class GroundFloor extends FlxState
 		updateHUD();
 		
 		gameRunning = true;
+		
+		persistentDraw = true;
+		persistentUpdate = false;
 		
 		super.create();
 	}
@@ -109,6 +115,17 @@ class GroundFloor extends FlxState
 	override public function update():Void
 	{
 		super.update();
+		if (_gameClock.paused)
+		{
+			_gameClock.unpause();
+			
+		}
+		
+		if (FlxG.keys.justPressed.ESCAPE)
+		{
+			openSubState(new PauseMenu());
+		}
+		
 		FlxG.collide(_player, _mWalls);
 		FlxG.collide(_grpEnemies, _mWalls);
 		FlxG.overlap(_player, _grpMoney, playerTouchMoney);
@@ -281,15 +298,17 @@ class GroundFloor extends FlxState
 			FlxG.switchState(new SecondFloor());
 		});
 		*/
-		
-		_player.color = FlxRandom.color();
+		openSubState(new SecondFloorTempMenu());
+//		_player.color = FlxRandom.color();
 	}
 	
 	private function enterShop(Tile:FlxObject, Object:FlxObject):Void
 	{
+		
 		if (FlxG.keys.pressed.E)
 		{
-			_player.color = FlxRandom.color();
+			_gameClock.pause();
+			openSubState(new MerchantMenu());
 		}
 		
 	}

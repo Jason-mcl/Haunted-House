@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
+import flixel.util.FlxColor;
 import flixel.util.FlxMath;
 
 /**
@@ -17,9 +18,17 @@ class MenuState extends FlxState
 	 */
 	override public function create():Void
 	{
+		
+		//TODO: Create an image to use as a start game button
 		var startButton = new FlxButton(0, 0, "Start Game", startGame);
-		startButton.x = (FlxG.width / 2) - startButton.width;
-		startButton.y = (FlxG.height / 2) - startButton.height;
+		
+		
+//		startButton.label.setFormat("assests/GenBasR.ttf", 30, FlxColor.WHITE, "center");
+//		startButton.label.setBorderStyle(FlxText.BORDER_OUTLINE, FlxColor.BLACK, 1);
+		
+		startButton.x = (FlxG.width / 2) - startButton.width / 2;
+		startButton.y = (FlxG.height / 2) - startButton.height / 2;
+
 		add(startButton);
 		super.create();
 	}
